@@ -1,15 +1,43 @@
 \documentclass{article}
 
 \usepackage[slovene]{babel}
+\usepackage{listings}
+\usepackage{amsmath}
 
 \title{Projektna naloga iz statistike}
 \author{Andraž Čepič}
 \date{2. 6. 2022}
 
+\DeclareMathOperator{\std_err}{SE}
+
 \begin{document}
 
 \maketitle
 
+V projektu ves čas uporabljamo Python s paketi Pandas, NumPy, Jupyter in Matplotlib.
+
 \section*{Naloga 1}
+V namen obdelave podatkov smo napisali Jupyter zvezek \verb+kibergrad.ipynb+. Za začetek naložimo podatke iz datoteke \verb+Kibergrad.csv+ v Pandas DataFrame objekt. 
+
+\subsection*{(a)}
+Izberemo enostavni slučanji vzorec velikosti $200$ z vgrajeno funkcijo paketa Pandas, in sicer \verb+pandas.DataFrame.sample+. Če so
+\begin{equation*}
+    X_1, \ldots, X_{200}
+\end{equation*}
+števila otrok vsake od vzorčenih družin, je primerna ocena za povprečje enaka
+\begin{equation*}
+    \overline{X} = \frac{X_1 + \cdots + X_{200}}{200}.
+\end{equation*}
+Za naš specifičen vzorec dobimo oceno za povprečno število otrok v mestu Kibergrad:
+\begin{equation*}
+    \overline{X} = 0{,}955
+\end{equation*}
+
+\subsection*{(b)}
+Ocena za standardno napako je podana s formulo
+\begin{equation*}
+    \widehat{\std_err}^2 = \frac{N-1}{N} \cdot \frac{1}{n(n-1)}\sum_{i=1}^{n}(X_i - \overline{X})^2,
+\end{equation*}
+kjer je $N$ velikost populacije in $n$ velikost enostavnega slučanega vzorca. V našem primeru je $N = 43.886$ in $n = 200$.
 
 \end{document}
