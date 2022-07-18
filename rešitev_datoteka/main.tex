@@ -14,7 +14,7 @@
 
 \title{Projektna naloga iz statistike}
 \author{Andraž Čepič}
-\date{2. 6. 2022}
+\date{18. 7. 2022}
 
 \DeclareMathOperator{\std_err}{SE}
 \DeclareMathOperator{\exp_val}{E}
@@ -22,6 +22,11 @@
 \DeclareMathOperator{\verjetje}{L}
 \DeclareMathOperator{\verjetnost}{P}
 \DeclareMathOperator{\fisher}{FI}
+\DeclareMathOperator*{\rang}{rang}
+\DeclareMathOperator*{\ima}{im}
+\DeclareMathOperator*{\hipoteza}{H}
+\DeclareMathOperator*{\akaik}{AIC}
+\DeclareMathOperator*{\rss}{RSS}
 
 \begin{document}
 
@@ -43,7 +48,7 @@ Izberemo enostavni slučanji vzorec velikosti $200$ s funkcijo \texttt{pandas.Da
 \end{equation*}
 Za naš specifičen vzorec dobimo oceno za povprečno število otrok v mestu Kibergrad:
 \begin{equation*}
-    \overline{X} = 0{,}925
+    \overline{X} \approx 0{,}925
 \end{equation*}
 
 \subsection*{(b)}
@@ -53,7 +58,7 @@ Ocena za standardno napako je podana s formulo
 \end{equation*}
 kjer je $N$ velikost populacije in $n$ velikost enostavnega slučanega vzorca. V našem primeru je $N = 43.886$ in $n = 200$. Tako za naš vzorec dobimo
 \begin{equation*}
-    \widehat{\std_err} = 0{,}0808
+    \widehat{\std_err} \approx 0{,}0808
 \end{equation*}
 
 Za enostavno slučajno vzorčenje so intervali zaupanja ocen povprečja oblike
@@ -68,7 +73,7 @@ kjer je $F_t$ komulativna funkcija Studentove $t$-porazdelitve z $n-1$ prostostn
 \subsection*{(c)}
 Pravo populacijsko povprečje se glasi
 \begin{equation*}
-    \mu = \frac{x_1 + \ldots + x_N}{N} = 0{,}9479.
+    \mu = \frac{x_1 + \ldots + x_N}{N} \approx 0{,}9479.
 \end{equation*}
 Prava standardna napaka za enostavni slučanji vzorec velikosti $n = 200$ je
 \begin{equation}
@@ -77,7 +82,7 @@ Prava standardna napaka za enostavni slučanji vzorec velikosti $n = 200$ je
 \end{equation}
 kjer je $\sigma ^2$ variacija za celo populacijo. Za naše podatke je
 \begin{equation*}
-    \std_err = 0{,}0816.
+    \std_err \approx 0{,}0816.
 \end{equation*}
 Opazimo, da je ocena za povprečje malce manjša od pravega povprečja in ocena za standardno napako je prav tako malo manjša, vendar se razlikuje šele v tretji decimalki. Da, interval zaupanja pokrije populacijsko povprečje.
 
@@ -97,11 +102,11 @@ Izračunamo, da populacijsko povprečje pokrije $96$ intervalov zaupanja, oz. de
 \end{equation*}
 Torej je standardni odklon enak
 \begin{equation*}
-    \widehat{\sigma} = 0{,}0776.
+    \widehat{\sigma} \approx 0{,}0776.
 \end{equation*}
 Prava standardna napaka za vzorec velikosti $200$ pa je
 \begin{equation*}
-    \std_err = 0{,}0816,
+    \std_err  \approx 0{,}0816,
 \end{equation*}
 kar vemo že od prej. Opazimo, da je standardni odklon ocen povprečja manjši od standardne napake.
 
@@ -114,11 +119,11 @@ Takoj opazimo, oziroma preverimo računsko, da tedaj vsi intervali zaupanja pokr
 
 V tem primeru je standardni odklon ocen za povprečje enak
 \begin{equation*}
-    \widehat{\sigma}_1 = 0{,}0399.
+    \widehat{\sigma}_1 \approx 0{,}0399.
 \end{equation*}
 Prava standardna napaka za vzorec velikosti $800$ pa je
 \begin{equation*}
-    \std_err_1 = 0{,}0405.
+    \std_err_1 \approx 0{,}0405.
 \end{equation*}
 
 Iz formule \eqref{standardna_napaka_formula} je očitno, da je za večje velikosti vzorcev $n$ standardna napaka manjša, zato nas ne preseneča, da je prava stantardna napaka za vzorce velikosti $800$ precej manjša od tiste za vzorce velikosti $200$. Zanimivo je, da se standardni odklon ocen za povprečje v obeh primerih precej ujema s pravimi napakami, torej je standardni odklon ocen za vzorce velikosti $800$ približno pol manjši od tistega, ki pride iz vzorcev velikosti $200$. TODO: pojasni do konca.
@@ -142,7 +147,7 @@ zato je
 \end{equation*}
 cenilka za parameter $\theta$ preko ocene prvega momenta $\overline{X}$. Ocena $\overline{X}$ za $\exp_val(X)$ je nepristranska in pričakovana vrednost je linearna, torej je $\widehat{\theta}$ nepristranska cenilka za $\theta$. Po naših opažanjih dobimo oceno
 \begin{equation*}
-    \widehat{\theta} = 0{,}3667.
+    \widehat{\theta} \approx 0{,}3667.
 \end{equation*}
 
 \subsection*{(b)}
@@ -156,7 +161,7 @@ zato je nepristranska ocena za kvadrat standardne napake pri metodi momentov ena
 \end{equation*}
 in pri teh konkretnih opažanjih ocena za standardno napako znaša
 \begin{equation*}
-    \widehat{\std_err} = 0{,}3399.
+    \widehat{\std_err} \approx 0{,}3399.
 \end{equation*}
 
 \subsection*{(c)}
@@ -208,7 +213,7 @@ zato je
 \end{equation*}
 in končno v našem primeru $\theta = \frac{2}{5}$ dobimo oceno za standardno napako:
 \begin{equation*}
-    \widehat{\std_err} = 0{,}1549.
+    \widehat{\std_err} \approx 0{,}1549.
 \end{equation*}
 
 \subsection*{(e)}
@@ -301,7 +306,7 @@ Sledi
 \end{align*}
 saj je $x \in \left[0, \frac{\pi}{2}\right]$. Za ta $x$ je $f_{\varphi | H}(x) > 0$, zato je modus enak $\arctan(\sqrt{\frac{2}{3}})$, oziroma
 \begin{equation*}
-    \text{modus} = 0{,}6847.
+    \text{modus} \approx 0{,}6847.
 \end{equation*}
 Pričakovana vrednost je enaka
 \begin{align*}
@@ -310,7 +315,7 @@ Pričakovana vrednost je enaka
 \end{align*}
 Z numerično integracijo, ki smo jo izvedli s funkcijo \texttt{scipy.integrate.quad}, smo dobili, da je 
 \begin{equation*}
-    \mu = 0{,}6898.
+    \mu \approx 0{,}6898.
 \end{equation*}
 Graf aposteriorne porazdelitve $f_{\varphi | H}$ je
 \begin{figure}[H]
@@ -324,7 +329,7 @@ Ko pretvorimo parametra v oceni za $\theta$ preko $\theta = \sin^2 \varphi$, dob
 \end{equation*}
 in
 \begin{equation*}
-    \widehat{\theta}_{\mu} = \theta(\mu) = 0{,}405.
+    \widehat{\theta}_{\mu} = \theta(\mu) \approx 0{,}405.
 \end{equation*}
 Oceni preko modusov se popolnoma ujemata, saj je 
 \begin{equation*}
@@ -383,6 +388,39 @@ kjer je
 $\beta^\prime \in \mathbb{R}^{13}$ in $\eta \sim N\left(0, \sigma_B^2 I\right)$.
 
 \subsection*{(a)}
-Cenilke izračunamo po metodi najmanjših kvadratov, za kar lahko uporabimo \texttt{numpy.linalg.lstsq}.
+Cenilke izračunamo po metodi najmanjših kvadratov, za kar smo uporabili \texttt{numpy.linalg.lstsq}, ki nam poleg ocene vrne tudi $\rss$ in rang matrik $X$ in $Z$. Ocenjene temperature po modelu A lahko grafično primerjamo z opaženimi temperaturami:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{../rezultati/temperature_model_A.jpg}
+\end{figure}
+Podobno storimo za ocenjene temperature po modelu B:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{../rezultati/temperature_model_B.jpg}
+\end{figure}
+Iz slik se nam zdi, da model A ne bo dobro deloval znotraj modela B. Da preizkusimo model A znotraj modela B, izračunamo Fisherjevo statistiko
+\begin{equation*}
+    F = \frac{\frac{\rss_A - \rss_B}{\rang Z - \rang X}}{\frac{\rss_B}{420 - \rang Z}}.
+\end{equation*}
+Če je $Y = v + \varepsilon$, kjer je $v \in \ima Z$, je naša ničta hipoteza
+\begin{equation*}
+    H_0 : v \in \ima X.
+\end{equation*}
+Ovržemo jo, če je
+\begin{equation*}
+    F \geq F^{-1}_{\text{Fisher}(p-q, n-q)}(1 - \alpha),
+\end{equation*}
+kjer je $p = \rang Z$, $q = \rang X$, $n = 420$ in $\alpha$ stopnja tveganja. V našem primeru ugotovimo, da hipotezo ovržemo za obe stopnji tveganja $0{,}01$ in $0{,}05$, torej je model A res preozek. 
+
+\subsection*{(b)}
+Model A ima $\rang X = 3$ parametre in model B ima $\rang Z = 13$ parametrov. Potem je Akaikejeva informacija modela A enaka
+\begin{equation*}
+    \akaik = 2\cdot 3 + 420 \cdot \log(\rss) \approx 4242,
+\end{equation*}
+modela B pa
+\begin{equation*}
+    \akaik \approx 2988.
+\end{equation*}
+Model B ima manjšo Akaikejevo informacijo.    
 
 \end{document}
