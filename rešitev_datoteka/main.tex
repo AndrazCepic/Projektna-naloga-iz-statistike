@@ -5,6 +5,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{lmodern} 
@@ -25,7 +27,7 @@
 
 \maketitle
 
-V projektu ves čas uporabljamo Python s paketi Pandas, NumPy, Jupyter in Matplotlib. Vsi programi, spisani v namen obdelave podatkov, se nahajajo v mapi \texttt{skripte}. 
+V projektu ves čas uporabljamo Python s paketi Pandas, NumPy, SciPy, Jupyter in Matplotlib. Vsi programi, spisani v namen obdelave podatkov, se nahajajo v mapi \texttt{skripte}. Za izračune gostot, komulativnih funkcij, oziroma inverze le teh, uporabljamo knjižnico \texttt{scipy.stats}.
 
 \section*{Naloga 1}
 V namen obdelave podatkov smo napisali Jupyter zvezek \texttt{kibergrad.ipynb}. Za začetek naložimo podatke iz datoteke \texttt{kibergrad.csv} v Pandas DataFrame objekt. 
@@ -122,7 +124,7 @@ Prava standardna napaka za vzorec velikosti $800$ pa je
 Iz formule \eqref{standardna_napaka_formula} je očitno, da je za večje velikosti vzorcev $n$ standardna napaka manjša, zato nas ne preseneča, da je prava stantardna napaka za vzorce velikosti $800$ precej manjša od tiste za vzorce velikosti $200$. Zanimivo je, da se standardni odklon ocen za povprečje v obeh primerih precej ujema s pravimi napakami, torej je standardni odklon ocen za vzorce velikosti $800$ približno pol manjši od tistega, ki pride iz vzorcev velikosti $200$. TODO: pojasni do konca.
 
 \section*{Naloga 2}
-Obdelava podatkov je v Jupyter datoteki \texttt{naloga\char`_2.ipynb}.
+Računalniški izračuni in izrisi grafov so v Jupyter datoteki \texttt{naloga\char`_2.ipynb}.
 
 \subsection*{(a)}
 Naj bo $X$ spremenljivka z dano porazdelitivjo, odvisno od parametra $\theta$. Tedaj je 
@@ -230,6 +232,157 @@ Sklepamo, da je
 \begin{equation*}
     f_{\theta | H}(t) = \frac{1}{B(5, 7)} t^4(1-t)^6,
 \end{equation*}
-kjer je $t \in [0, 1]$, drugje je pa enaka $0$. Ugotovili smo, da je aposteriorna porazdelitev $\theta | H$ porazdeljena z beta porazdelitvijo $B(5, 7)$.
+kjer je $t \in [0, 1]$, drugje je pa enaka $0$. Ugotovili smo, da je aposteriorna porazdelitev $\theta | H$ porazdeljena z beta porazdelitvijo $B(5, 7)$. 
+
+Njen modus, tj. točka, v kateri gostota porazdelitve doseže globalni maksimum, dobimo s tem, da poiščemo stacionarne točke. Ker je $\log$ strogo naraščajoča funkcija, lahko analiziramo $\log(f_{\theta | H})$. Poleg tega lahko ignoriramo konstanto $\frac{1}{B(5, 7)}$. Sedaj je
+\begin{equation*}
+    \log(t^4 (1-t)^6) = 4 \log t + 6 \log(1-t),
+\end{equation*}
+torej
+\begin{equation*}
+    \log(t^4 (1-t)^6)^\prime = \frac{4}{t} - \frac{6}{1-t}.
+\end{equation*}
+Edina ničla tega izraza je $t = \frac{2}{5}$. Na robu intervala $[0,1]$ je $f_{\theta | H}$ enaka $0$, na notranjosti je pa strogo večja od $0$, zato je maksimum dosežen pri $t = \frac{2}{5}$. Modus je potem enak
+\begin{equation*}
+    \text{modus} = \frac{2}{5}.
+\end{equation*}
+Pričakovana vrednost porazdelitve beta $X \sim B(\alpha, \beta)$ se glasi
+\begin{equation*}
+    \exp_val(X) = \frac{\alpha}{\alpha + \beta}.
+\end{equation*}
+V našem primeru je pričakovana vrednost enaka
+\begin{equation*}
+    \mu = \frac{5}{12}.
+\end{equation*}
+Opazimo, da je modus natanko enak oceni za $\theta$, ki jo dobimo preko metode največjega verjetja.
+
+Graf gostote $f_{\theta | H}$ je
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{../rezultati/gostota_apos_1.jpg}
+\end{figure}
+
+\subsection*{(f)}
+Ponovno uporabimo Bayesovo formulo za mešane porazdelitve:
+\begin{equation*}
+    f_{\varphi |H}(x) = \frac{\verjetnost(H | x) f_\varphi (x)}{\verjetnost(H)}.
+\end{equation*}
+V tem primeru je $\theta = \sin^2 \varphi$, zato za parameter $x$ gostote $f_\varphi$ velja
+\begin{equation*}
+    \verjetnost(H | x) = \frac{2^6}{3^{10}}(\sin^2 x)^4 (\cos^2 x)^6.
+\end{equation*}
+Spremenljivka $\varphi$ je porazdeljena enakomerno na intervalu $[0, \frac{\pi}{2}]$, torej velja
+\begin{align*}
+    \verjetnost(H) &= \int_0^{\frac{\pi}{2}} \frac{2^6}{3^{10}}(\sin^2 x)^4 (\cos^2 x)^6 \frac{2}{\pi} dx, \\
+    &= \frac{2^6}{3^{10}} \frac{2}{\pi} \int_0^{\frac{\pi}{2}} \sin^8 (x) \cos^{12} (x) dx. \\
+\end{align*}
+Velja
+\begin{equation*}
+    \int_0^{\frac{\pi}{2}} \sin^{2p-1} (x) \cos^{2q-1}(x) dx = \frac{1}{2} B(p, q),
+\end{equation*}
+zato je
+\begin{align*}
+    \verjetnost(H) &= \frac{2^6}{3^{10}} \frac{1}{\pi} B \left(\frac{9}{2}, \frac{13}{2} \right).
+\end{align*}
+Dobimo
+\begin{align*}
+    f_{\varphi | H}(x) &= \frac{2}{\pi} \frac{\pi}{B \left(\frac{9}{2}, \frac{13}{2} \right)} \sin^8(x) \cos^{12}(x), \\
+    f_{\varphi | H}(x) &= \frac{1}{\frac{1}{2} B \left(\frac{9}{2}, \frac{13}{2} \right)} \sin^8(x) \cos^{12}(x) \quad ; x \in \left[0, \frac{\pi}{2} \right].
+\end{align*}
+Izračunajmo modus. Označimo $C := \frac{1}{\frac{1}{2} B \left(\frac{9}{2}, \frac{13}{2} \right)}$ in računamo
+\begin{equation*}
+    f_{\varphi | H}^\prime = C \left(8 \sin^7(x)\cos^{13}(x) - 12 \sin^9(x) \cos^{11}(x)\right) = 0.
+\end{equation*}
+Sledi
+\begin{align*}
+    8 \cos^2 x - 12 \sin^2 x &= 0, \\
+    \tan^2 x &= \frac{8}{12} = \frac{2}{3}, \\
+    \tan(x) &= \sqrt{\frac{2}{3}},
+\end{align*}
+saj je $x \in \left[0, \frac{\pi}{2}\right]$. Za ta $x$ je $f_{\varphi | H}(x) > 0$, zato je modus enak $\arctan(\sqrt{\frac{2}{3}})$, oziroma
+\begin{equation*}
+    \text{modus} = 0{,}6847.
+\end{equation*}
+Pričakovana vrednost je enaka
+\begin{align*}
+    \mu &= \int_0^{\frac{\pi}{2}}x \cdot f_{\varphi | H}(x) dx \\
+    &= C \int_0^{\frac{\pi}{2}} x \cdot \sin^8 (x) \cos^{12}(x) dx.
+\end{align*}
+Z numerično integracijo, ki smo jo izvedli s funkcijo \texttt{scipy.integrate.quad}, smo dobili, da je 
+\begin{equation*}
+    \mu = 0{,}6898.
+\end{equation*}
+Graf aposteriorne porazdelitve $f_{\varphi | H}$ je
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{../rezultati/gostota_apos_2.jpg}
+\end{figure}
+
+Ko pretvorimo parametra v oceni za $\theta$ preko $\theta = \sin^2 \varphi$, dobimo oceni
+\begin{equation*}
+    \widehat{\theta}_{\text{modus}} = \theta(\text{modus za } \varphi) = 0{,}4
+\end{equation*}
+in
+\begin{equation*}
+    \widehat{\theta}_{\mu} = \theta(\mu) = 0{,}405.
+\end{equation*}
+Oceni preko modusov se popolnoma ujemata, saj je 
+\begin{equation*}
+    \sin^2 x = 1 - \cos^2x = 1 - \frac{1}{1 + \tan^2 x},
+\end{equation*}
+torej za modus $x$ gostote $f_{\varphi | H}$ velja 
+\begin{equation*}
+    \sin^2 x = 1 - \frac{1}{1 + \frac{2}{3}} = \frac{2}{5},
+\end{equation*}
+kar je ravno modus od prej. Pričakovana vrednost od prej je enaka $\frac{5}{12}$, kar je približno enako $0{,}4167$. To je malce večja številka od ocene $\widehat{\theta}_{\mu} = 0{,}405$.
+
+\section*{Naloga 3}
+Pri modelu A so pojasnjevalne spremenljivke vseh $420$ mesecev in sinus, odvisen od teh mesecev, s periodo eno leto. Oštevilčimo mesece od $1$ do $420$ in jih označimo z $x_i = i$. Potem se model A glasi
+\begin{equation*}
+    Y_i = a + b x_i + c \sin \left(2\pi \frac{x_i - 1}{12}\right) + \varepsilon_i.
+\end{equation*}
+V matrični obliki je
+\begin{equation*}
+    Y = X \beta + \varepsilon,
+\end{equation*}
+kjer je
+\begin{equation*}
+    X := 
+    \begin{bmatrix}
+        1 & x_1 & \sin \left(2\pi \frac{x_1 - 1}{12}\right) \\
+        1 & x_2 & \sin \left(2\pi \frac{x_2 - 1}{12}\right) \\
+        \vdots & \vdots & \vdots \\
+        1 & x_{420} & \sin \left(2\pi \frac{x_{420} - 1}{12}\right) \\
+    \end{bmatrix},
+\end{equation*}
+$\beta \in \mathbb{R}^3$ in $\varepsilon \sim N \left(0, \sigma_A^2 I\right)$.
+
+Model B se glasi
+\begin{equation*}
+    Y = Z \beta^\prime + \eta,
+\end{equation*}
+kjer je
+\begin{equation*}
+    Z :=
+    \begin{bmatrix}
+        x_1 & 1 & 0 & \cdots & 0 & 0 \\
+        x_2 & 0 & 1 & \cdots & 0 & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+        x_{12} & 0 & 0 & \cdots & 0 & 1 \\
+        x_{13} & 1 & 0 & \cdots & 0 & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+        x_{420} & 0 & 0 & \cdots & 0 & 1 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        x_1  & I_{12} \\
+        \vdots &I_{12} \\
+        x_{420}  & I_{12} \\
+    \end{bmatrix},
+\end{equation*}
+$\beta^\prime \in \mathbb{R}^{13}$ in $\eta \sim N\left(0, \sigma_B^2 I\right)$.
+
+\subsection*{(a)}
+Cenilke izračunamo po metodi najmanjših kvadratov, za kar lahko uporabimo \texttt{numpy.linalg.lstsq}.
 
 \end{document}
