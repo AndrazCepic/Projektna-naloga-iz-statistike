@@ -14,7 +14,7 @@
 
 \title{Projektna naloga iz statistike}
 \author{Andraž Čepič}
-\date{18. 7. 2022}
+\date{19. 7. 2022}
 
 \DeclareMathOperator{\std_err}{SE}
 \DeclareMathOperator{\exp_val}{E}
@@ -32,10 +32,10 @@
 
 \maketitle
 
-V projektu ves čas uporabljamo Python s paketi Pandas, NumPy, SciPy, Jupyter in Matplotlib. Vsi programi, spisani v namen obdelave podatkov, se nahajajo v mapi \texttt{skripte}. Za izračune gostot, komulativnih funkcij, oziroma inverze le teh, uporabljamo knjižnico \texttt{scipy.stats}.
+V projektu ves čas uporabljamo Python s paketi Pandas, NumPy, SciPy, Jupyter in Matplotlib. Vsi programi, spisani v namen obdelave podatkov, se nahajajo v mapi \texttt{skripte}. Za izračune gostot, komulativnih funkcij, oziroma inverze le-teh, uporabljamo knjižnico \texttt{scipy.stats}.
 
 \section*{Naloga 1}
-V namen obdelave podatkov smo napisali Jupyter zvezek \texttt{kibergrad.ipynb}. Za začetek naložimo podatke iz datoteke \texttt{kibergrad.csv} v Pandas DataFrame objekt. 
+V namen obdelave podatkov smo napisali Jupyter zvezek \texttt{kibergrad.ipynb}.
 
 \subsection*{(a)}
 Izberemo enostavni slučanji vzorec velikosti $200$ s funkcijo \texttt{pandas.DataFrame.sample}. Če so
@@ -54,11 +54,11 @@ Za naš specifičen vzorec dobimo oceno za povprečno število otrok v mestu Kib
 \subsection*{(b)}
 Ocena za standardno napako je podana s formulo
 \begin{equation*}
-    \widehat{\std_err}^2 = \frac{N-1}{N} \cdot \frac{1}{n(n-1)}\sum_{i=1}^{n}(X_i - \overline{X})^2,
+    \widehat{\std_err}^2 = \frac{N-n}{N} \cdot \frac{1}{n(n-1)}\sum_{i=1}^{n}(X_i - \overline{X})^2,
 \end{equation*}
 kjer je $N$ velikost populacije in $n$ velikost enostavnega slučanega vzorca. V našem primeru je $N = 43.886$ in $n = 200$. Tako za naš vzorec dobimo
 \begin{equation*}
-    \widehat{\std_err} \approx 0{,}0808
+    \widehat{\std_err} \approx 0{,}0808.
 \end{equation*}
 
 Za enostavno slučajno vzorčenje so intervali zaupanja ocen povprečja oblike
@@ -80,7 +80,7 @@ Prava standardna napaka za enostavni slučanji vzorec velikosti $n = 200$ je
     \label{standardna_napaka_formula}
     \std_err^2 = \frac{N - n}{N - 1} \cdot \frac{\sigma^2}{n},
 \end{equation}
-kjer je $\sigma ^2$ variacija za celo populacijo. Za naše podatke je
+kjer je $\sigma ^2$ varianca za celo populacijo. Za naše podatke je
 \begin{equation*}
     \std_err \approx 0{,}0816.
 \end{equation*}
