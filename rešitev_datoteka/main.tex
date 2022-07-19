@@ -32,7 +32,7 @@
 
 \maketitle
 
-V projektu ves čas uporabljamo Python s paketi Pandas, NumPy, SciPy, Jupyter in Matplotlib. Vsi programi, spisani v namen obdelave podatkov, se nahajajo v mapi \texttt{skripte}. Za izračune gostot, komulativnih funkcij, oziroma inverze le-teh, uporabljamo knjižnico \texttt{scipy.stats}.
+V projektu ves čas uporabljamo Python s paketi Pandas, NumPy, SciPy, Jupyter in Matplotlib. Za izračune gostot, komulativnih funkcij, itd.\ uporabljamo knjižnico \texttt{scipy.stats}. Vsi programi, spisani v namen obdelave podatkov, se nahajajo v mapi \texttt{skripte}. Posebej shranjeni rezultati so v mapi \texttt{rezultati}, ostali so pa v Jupyter zvezkih, kjer je so se tudi izvedli vsi izračuni.
 
 \section*{Naloga 1}
 V namen obdelave podatkov smo napisali Jupyter zvezek \texttt{kibergrad.ipynb}.
@@ -48,7 +48,7 @@ Izberemo enostavni slučanji vzorec velikosti $200$ s funkcijo \texttt{pandas.Da
 \end{equation*}
 Za naš specifičen vzorec dobimo oceno za povprečno število otrok v mestu Kibergrad:
 \begin{equation*}
-    \overline{X} \approx 0{,}925
+    \overline{X} \approx 0{,}755
 \end{equation*}
 
 \subsection*{(b)}
@@ -58,7 +58,7 @@ Ocena za standardno napako je podana s formulo
 \end{equation*}
 kjer je $N$ velikost populacije in $n$ velikost enostavnega slučanega vzorca. V našem primeru je $N = 43.886$ in $n = 200$. Tako za naš vzorec dobimo
 \begin{equation*}
-    \widehat{\std_err} \approx 0{,}0808.
+    \widehat{\std_err} \approx 0{,}0753.
 \end{equation*}
 
 Za enostavno slučajno vzorčenje so intervali zaupanja ocen povprečja oblike
@@ -67,7 +67,7 @@ Za enostavno slučajno vzorčenje so intervali zaupanja ocen povprečja oblike
 \end{equation*}
 kjer je $F_t$ komulativna funkcija Studentove $t$-porazdelitve z $n-1$ prostostnimi stopnjami in $\alpha = 0.05$ stopnja tveganja. V našem primeru dobimo interval zaupanja
 \begin{equation*}
-    0{,}7657 < \mu < 1{,}0843
+    0{,}6064 < \mu < 0{,}9036
 \end{equation*}
 
 \subsection*{(c)}
@@ -84,16 +84,16 @@ kjer je $\sigma ^2$ varianca za celo populacijo. Za naše podatke je
 \begin{equation*}
     \std_err \approx 0{,}0816.
 \end{equation*}
-Opazimo, da je ocena za povprečje malce manjša od pravega povprečja in ocena za standardno napako je prav tako malo manjša, vendar se razlikuje šele v tretji decimalki. Da, interval zaupanja pokrije populacijsko povprečje.
+Opazimo, da je ocena za povprečje manjša od pravega povprečja in ocena za standardno napako je prav tako malo manjša, vendar se razlikuje šele v tretji decimalki. Ne, interval zaupanja ne pokrije populacijskega povprečja.
 
 \subsection*{(d)}
-Intervale zaupanja izračunamo na enak način, kot smo ga za prvi vzorec. Rezultati se nahajajo v mapi \texttt{rezultati}, in sicer v \texttt{intervali\char`_zaupanja.csv}. Naslednja slika prikazuje te intervale zaupanja in populacijsko povprečje:
+Intervale zaupanja izračunamo na enak način, kot smo ga za prvi vzorec. Rezultati se nahajajo v mapi \texttt{rezultati}, in sicer v \texttt{intervali\char`_zaupanja\char`_200.csv}. Naslednja slika prikazuje te intervale zaupanja in populacijsko povprečje:
 
 \begin{figure}[H]
-    \includegraphics[scale=0.4]{../rezultati/intervali_zaupanja_100_vzorcev_pop_povprecje.jpg}
+    \includegraphics[scale=0.4]{../rezultati/intervali_zaupanja_100_vzorcev_200.jpg}
 \end{figure}
 
-Izračunamo, da populacijsko povprečje pokrije $96$ intervalov zaupanja, oz. delež intervalov, ki pokrijejo populacijsko povprečje, je $0{,}96$.
+Izračunamo, da populacijsko povprečje pokrije $92$ intervalov zaupanja, oz. delež intervalov, ki pokrijejo populacijsko povprečje, je $0{,}92$.
 
 \subsection*{(e)}
 Če označimo $i$-to oceno povprečja iz $i$-tega vzorca z $\mu_i$ in z $\overline{\mu}$ označimo povprečje teh ocen, je potem ocena za varianco teh ocen enaka
@@ -102,31 +102,31 @@ Izračunamo, da populacijsko povprečje pokrije $96$ intervalov zaupanja, oz. de
 \end{equation*}
 Torej je standardni odklon enak
 \begin{equation*}
-    \widehat{\sigma} \approx 0{,}0776.
+    \widehat{\sigma} \approx 0{,}0862.
 \end{equation*}
 Prava standardna napaka za vzorec velikosti $200$ pa je
 \begin{equation*}
     \std_err  \approx 0{,}0816,
 \end{equation*}
-kar vemo že od prej. Opazimo, da je standardni odklon ocen povprečja manjši od standardne napake.
+kar vemo že od prej. Opazimo, da je standardni odklon ocen povprečja večji od standardne napake.
 
 \subsection*{(f)}
-Tedaj so rezultati o intervalih zaupanja shranjeni v datoteki \texttt{intervali\char`_zaupanja\char`_1.csv} v mapi \texttt{rezultati}. Grafično je v tem primeru
+Tedaj so rezultati o intervalih zaupanja shranjeni v datoteki \texttt{intervali\char`_zaupanja\char`_800.csv} v mapi \texttt{rezultati}. Grafično je v tem primeru
 \begin{figure}[H]
-    \includegraphics[scale=0.4]{../rezultati/intervali_zaupanja_100_vecjiih_vzorcev_pop_povprecje.jpg}
+    \includegraphics[scale=0.4]{../rezultati/intervali_zaupanja_100_vzorcev_800.jpg}
 \end{figure}
-Takoj opazimo, oziroma preverimo računsko, da tedaj vsi intervali zaupanja pokrijejo populacijsko povprečje. 
-
-V tem primeru je standardni odklon ocen za povprečje enak
+Sedaj je delež intervalov zaupanja, ki pokrivajo populacijsko povprečje, enak $0{,}94$. V tem primeru je standardni odklon ocen za povprečje enak
 \begin{equation*}
-    \widehat{\sigma}_1 \approx 0{,}0399.
+    \widehat{\sigma}_1 \approx 0{,}037.
 \end{equation*}
 Prava standardna napaka za vzorec velikosti $800$ pa je
 \begin{equation*}
     \std_err_1 \approx 0{,}0405.
 \end{equation*}
 
-Iz formule \eqref{standardna_napaka_formula} je očitno, da je za večje velikosti vzorcev $n$ standardna napaka manjša, zato nas ne preseneča, da je prava stantardna napaka za vzorce velikosti $800$ precej manjša od tiste za vzorce velikosti $200$. Zanimivo je, da se standardni odklon ocen za povprečje v obeh primerih precej ujema s pravimi napakami, torej je standardni odklon ocen za vzorce velikosti $800$ približno pol manjši od tistega, ki pride iz vzorcev velikosti $200$. TODO: pojasni do konca.
+Iz formule \eqref{standardna_napaka_formula} je očitno, da je za večje velikosti vzorcev $n$ standardna napaka manjša, zato nas ne preseneča, da je prava stantardna napaka za vzorce velikosti $800$ precej manjša od tiste za vzorce velikosti $200$. Zanimivo je, da se standardni odklon ocen za povprečje v obeh primerih precej ujema s pravimi napakami, torej je standardni odklon ocen za vzorce velikosti $800$ približno pol manjši od tistega, ki pride iz vzorcev velikosti $200$. To je smiselno, ker so ocene povprečji pri vzorcih velikosti $800$ približno "še enkrat" bližje kot tiste za $200$, ker je prava standardna napaka polj manjša. Opazimo tudi, da delež intervalov zaupanja, ki pokrijejo populacijsko povprečje, ni nujno dosti večji, če sploh, od tistega za vzorce velikosti $200$. Kljub temu, da so središča intervalov, torej ocene povprečja, bližje populacijskemu povprečju, so širine intervalov manjše. Zato je pridobitev s približanjem središč izgubljena z zmanjšanjem širine intervalov. 
+
+Intuitivno si to razlagamo tako, da večji vzorci bolje reprezentirajo pravo populacijo, torej so napake manjše in ocene povprečij boljše. Vendar ni intuitivno, da bomo z eksperimentom približno tolikokrat zgrešili pravo povprečje, kot pri manjših vzorcih. 
 
 \section*{Naloga 2}
 Računalniški izračuni in izrisi grafov so v Jupyter datoteki \texttt{naloga\char`_2.ipynb}.
@@ -176,7 +176,7 @@ Iščemo maksimum verjetja. Lažje je opravljati z logaritmom, zato definiramo
 \end{equation*}
 Logaritem je monotona funkcija, zato bo maksimum $\verjetje(\theta; X)$ dosežen ob istem $\theta$ kot za $l(\theta; X)$. Odvod $l$ je potem
 \begin{equation*}
-    \frac{\partial l}{\theta} = \frac{4}{\theta} - \frac{6}{1 - \theta}.
+    \frac{\partial l}{\partial \theta} = \frac{4}{\theta} - \frac{6}{1 - \theta}.
 \end{equation*}
 Rešujemo torej enačbo
 \begin{equation*}
@@ -342,7 +342,7 @@ torej za modus $x$ gostote $f_{\varphi | H}$ velja
 kar je ravno modus od prej. Pričakovana vrednost od prej je enaka $\frac{5}{12}$, kar je približno enako $0{,}4167$. To je malce večja številka od ocene $\widehat{\theta}_{\mu} = 0{,}405$.
 
 \section*{Naloga 3}
-Pri modelu A so pojasnjevalne spremenljivke vseh $420$ mesecev in sinus, odvisen od teh mesecev, s periodo eno leto. Oštevilčimo mesece od $1$ do $420$ in jih označimo z $x_i = i$. Potem se model A glasi
+Izračuni so bili izvedeni v zvezku \texttt{temperature.ipynb}. Pri modelu A so pojasnjevalne spremenljivke vseh $420$ mesecev in sinus, odvisen od teh mesecev, s periodo eno leto. Oštevilčimo mesece od $1$ do $420$ in jih označimo z $x_i = i$. Potem se model A glasi
 \begin{equation*}
     Y_i = a + b x_i + c \sin \left(2\pi \frac{x_i - 1}{12}\right) + \varepsilon_i.
 \end{equation*}
@@ -402,7 +402,7 @@ Iz slik se nam zdi, da model A ne bo dobro deloval znotraj modela B. Da preizkus
 \begin{equation*}
     F = \frac{\frac{\rss_A - \rss_B}{\rang Z - \rang X}}{\frac{\rss_B}{420 - \rang Z}}.
 \end{equation*}
-Če je $Y = v + \varepsilon$, kjer je $v \in \ima Z$, je naša ničta hipoteza
+Če je $Y = v + \varepsilon$, kjer je $v \in \ima Z$, se naša ničelna hipoteza glasi
 \begin{equation*}
     H_0 : v \in \ima X.
 \end{equation*}
@@ -410,7 +410,7 @@ Ovržemo jo, če je
 \begin{equation*}
     F \geq F^{-1}_{\text{Fisher}(p-q, n-q)}(1 - \alpha),
 \end{equation*}
-kjer je $p = \rang Z$, $q = \rang X$, $n = 420$ in $\alpha$ stopnja tveganja. V našem primeru ugotovimo, da hipotezo ovržemo za obe stopnji tveganja $0{,}01$ in $0{,}05$, torej je model A res preozek. 
+kjer je $p = \rang Z$, $q = \rang X$, $n = 420$ in $\alpha$ stopnja tveganja. V našem primeru ugotovimo, da ničelno hipotezo ovržemo za obe stopnji tveganja $0{,}01$ in $0{,}05$, torej je model A res preozek. 
 
 \subsection*{(b)}
 Model A ima $\rang X = 3$ parametre in model B ima $\rang Z = 13$ parametrov. Potem je Akaikejeva informacija modela A enaka
